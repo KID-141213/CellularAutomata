@@ -1,0 +1,13 @@
+cabal-version:       2.4
+name:                CellularAutomata
+version:             0.1.0.0
+build-type:          Simple
+
+executable CellularAutomata
+  main-is:             Main.hs
+  hs-source-dirs:      src
+  other-modules:       Automata.Elementary
+                       Render.ASCII
+  default-language:    Haskell2010
+  ghc-options:         -Wall
+  build-depends:       base >=4.14 && <5

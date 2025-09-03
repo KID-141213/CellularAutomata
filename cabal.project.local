@@ -1,0 +1,2 @@
+with-compiler: C:/ghcup/ghc/9.8.4/bin/ghc.exe
+with-hc-pkg:   C:/ghcup/ghc/9.8.4/bin/ghc-pkg.exe
