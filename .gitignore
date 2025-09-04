@@ -1,0 +1,10 @@
+dist-newstyle/
+*.hi
+*.o
+*.dyn_hi
+*.dyn_o
+*.log
+.cabal-sandbox/
+cabal.sandbox.config
+.stack-work/
+.DS_Store
