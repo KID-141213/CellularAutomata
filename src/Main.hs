@@ -1,25 +1,36 @@
 module Main where
 
-import System.Environment (getArgs)
-import Automata.Elementary (step, seed)
-import Render.ASCII (renderRow)
+import Control.Concurrent (threadDelay)
+import Automata.Seeds
+import Render.ASCII2D
 
--- | Read an Int from args at position i, or use a default.
-readArgOr :: Int -> [String] -> Int -> Int
-readArgOr def xs i = case drop i xs of
-  (v:_) -> case reads v of
-             [(n,"")] -> n
-             _        -> def
-  _     -> def
+-- 5×5 初始图案（'#' 表示活；只是初始化用，输出会用黑白圈）
+initial :: World
+initial = fromStrings
+  [ "●●●●●●●●●●"
+  , "●●●●○○●●●●"
+  , "●●○●○●○●●●"
+  , "●●●●○○●●●●"
+  , "●●●●●●●●●●"
+  , "●●●●●●●●●●"
+  , "●●●○○○○●●●"
+  , "●●●●○●○●●●"
+  , "●●●●○○●●●●"
+  , "●●●●●●●●●●"
+  ]
 
--- | Usage: CellularAutomata [rule] [width] [steps]
---   Example: CellularAutomata 30 79 40
+-- 显示窗口改成 10×10
+box :: (Int,Int,Int,Int)
+box = (0, 9, 0, 9)
+
+loop :: Int -> World -> IO ()
+loop 0 _ = pure ()
+loop n w = do
+  -- 不需要很快，这里留个小延时
+  drawBoxed box w
+  putStrLn ""               -- 每代空一行
+  threadDelay 120000
+  loop (n-1) (step w)
+
 main :: IO ()
-main = do
-  args <- getArgs
-  let rule  = readArgOr 30 args 0
-      width = readArgOr 79 args 1
-      steps = readArgOr 40 args 2
-      initState = seed width
-      rows = take steps (iterate (step rule) initState)
-  mapM_ (putStrLn . renderRow) rows
+main = loop 20 initial       -- 只跑 10 次
