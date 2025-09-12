@@ -15,11 +15,13 @@ This project was inspired by the **array-based** implementation idea from a Yout
 - Press `Ctrl+C` to quit the program.
 
 ## Seeds in Haskell
-- A minimal terminal simulator for the 2D **Seeds** cellular automaton.
-- Seeds rule: every live cell dies; a dead cell with **exactly two** live neighbors (Moore neighborhood) becomes alive.
-
+Seeds rule: every live cell dies; a dead cell with exactly two live neighbors (Moore neighborhood) becomes alive.
 ### Features
-- Ships with a **10×10** demo pattern (editable in code);
-- Unicode rendering in the terminal: **● = alive**, **○ = dead**;
-- Interactive REPL with `help`, `show`, `run N`, `save [file]`, `exit`;
+- Includes a 10×10 demo pattern (can be modified in the code);
+- Displays the cellular automaton in the terminal using ASCII characters;
+- Provides a TUI with the following commands: `help`, `show`, `run N`, `save [file]`, `exit`;
 - Saves the current world as UTF-8 text with a `# generation: N` header.
+
+## Haddock
+Haddock documentation is generated at:
+`CellularAutomata\dist-newstyle\build\x86_64-windows\ghc-9.8.4\CellularAutomata-0.1.0.0\doc\html\CellularAutomata\`
