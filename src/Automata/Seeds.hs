@@ -11,17 +11,7 @@ Coordinates:
 - Rendering prints rows from top (small y) to bottom (large y).
 -}
 
-module Automata.Seeds
-  ( World
-  , step
-  , fromStrings
-  , toList
-  , render
-  , renderBox
-  , drawBox
-  , alive
-  , dead
-  ) where
+module Automata.Seeds where
 
 import qualified Data.Set as S
 import qualified Data.Map.Strict as M
