@@ -1,22 +1,25 @@
-# CellularAutomata — Minimal Haskell Cellular Automata (Elementary CA)
+# Cellular Automata
+## Authors
+- The implementation of **Game of Life** and an interactive mechanism to start/pause simulations — *Mengtong Chen*
+- The implementation of **Seeds** and mechanisms to store and load a CA — *Haogang Zhang*
+- Integration of the two projects — *Haogang Zhang*
 
-## Quick start (Cabal)
+## Game of Life in Haskell
+This project was inspired by the **array-based** implementation idea from a Youtuber *@The Coding Train*, and the cabal build was done with the assistance of *ChatGPT*.
+### Features
+- Board initialized with a **glider**;
+- The CA is displayed in the terminal using ASCII characters;
+- The board updates automatically every second to visualize the evolution;
+- The game supports pause/resume by pressing `Enter`;
+- Press `Ctrl+C` to quit the program.
 
-```bash
-cd CellularAutomata
-cabal update
-cabal run CellularAutomata         # defaults: rule 30, width 79, steps 40
-cabal run CellularAutomata -- 110 120 60  # rule=110, width=120, steps=60
-```
-If you see a triangle-like pattern for rule 30, everything works.
+## Seeds in Haskell
 
-## Structure
-- `src/Automata/Elementary.hs` — CA logic (rule application, seed).
-- `src/Render/ASCII.hs` — simple ASCII renderer.
-- `src/Main.hs` — CLI: `CellularAutomata [rule] [width] [steps]`.
+A minimal terminal simulator for the 2D **Seeds** cellular automaton.
 
-## Next steps
-- Add a 2D CA (e.g., Game of Life) under `Automata/Life.hs`.
-- Add an interactive or graphical renderer (gloss / threepenny / SDL2).
-- Add one compulsory feature (save/load, pause, set cells, etc.).
-- Generate Haddock docs: `cabal haddock --open`.
+### Features
+- Ships with a **10×10** demo pattern (editable in code);
+- Unicode rendering in the terminal: **● = alive**, **○ = dead**;
+- Interactive REPL with `help`, `show`, `run N`, `save [file]`, `exit`;
+- Saves the current world as UTF-8 text with a `# generation: N` header;
+- Seeds rule: every live cell dies; a dead cell with **exactly two** live neighbors (Moore neighborhood) becomes alive;

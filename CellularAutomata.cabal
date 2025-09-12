@@ -1,15 +1,28 @@
-cabal-version:       2.4
-name:                CellularAutomata
-version:             0.1.0.0
-build-type:          Simple
+cabal-version:      2.4
+name:               CellularAutomata
+version:            0.1.0.0
+build-type:         Simple
 
-executable CellularAutomata
-  hs-source-dirs: src
-  main-is: Main.hs
-  other-modules:
-      Automata.Seeds
-      Render.ASCII2D
-  build-depends:
-      base >=4.16 && <5,
-      containers
+library
+  hs-source-dirs:   src
+  exposed-modules:  Automata.Seeds
+                   , Automata.GOL
   default-language: Haskell2010
+  ghc-options:      -Wall
+  build-depends:    base >=4.18 && <4.20
+                  , containers
+                  , array          
+
+executable seeds
+  hs-source-dirs:   app/seeds
+  main-is:          Main.hs
+  default-language: Haskell2010
+  ghc-options:      -Wall -O2
+  build-depends:    base, containers, directory, CellularAutomata
+
+executable GOL
+  hs-source-dirs:   app/GOL
+  main-is:          Main.hs
+  default-language: Haskell2010
+  ghc-options:      -Wall -O2
+  build-depends:    base, containers, directory, CellularAutomata
