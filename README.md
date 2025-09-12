@@ -3,9 +3,10 @@
 - The implementation of **Game of Life** and an interactive mechanism to start/pause simulations — *Mengtong Chen*
 - The implementation of **Seeds** and mechanisms to store and load a CA — *Haogang Zhang*
 - Integration of the two projects — *Haogang Zhang*
+- The cabal build was done with the assistance of *ChatGPT*
 
 ## Game of Life in Haskell
-This project was inspired by the **array-based** implementation idea from a Youtuber *@The Coding Train*, and the cabal build was done with the assistance of *ChatGPT*.
+This project was inspired by the **array-based** implementation idea from a Youtuber *@The Coding Train*.
 ### Features
 - Board initialized with a **glider**;
 - The CA is displayed in the terminal using ASCII characters;
@@ -14,7 +15,6 @@ This project was inspired by the **array-based** implementation idea from a Yout
 - Press `Ctrl+C` to quit the program.
 
 ## Seeds in Haskell
-
 - A minimal terminal simulator for the 2D **Seeds** cellular automaton.
 - Seeds rule: every live cell dies; a dead cell with **exactly two** live neighbors (Moore neighborhood) becomes alive.
 

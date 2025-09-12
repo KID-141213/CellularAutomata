@@ -67,4 +67,3 @@ drawBox :: (Int,Int,Int,Int) -> World -> IO ()
 drawBox box world = do
   mapM_ putStrLn (renderBox box world)
   hFlush stdout
-

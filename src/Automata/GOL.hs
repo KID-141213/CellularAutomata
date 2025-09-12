@@ -45,8 +45,8 @@ display a = do
   let ((x0,y0),(x1,y1)) = bounds a
   sequence_ [ putStrLn [if a!(x,y) == 1 then '●' else '○' | x <- [x0..x1]] | y <- [y0..y1] ]
 
-stop :: Int -> Board -> Bool -> IO ()
-stop i board paused = do
+toStop :: Int -> Board -> Bool -> IO ()
+toStop i board paused = do
   k <- hReady stdin
   newPaused <- if k
                  then do _ <- getChar
@@ -55,12 +55,12 @@ stop i board paused = do
   if newPaused
     then do
       threadDelay 100000
-      stop i board newPaused
+      toStop i board newPaused
     else do
       putStrLn ("Generation " ++ show i ++ ":")
       display board
       threadDelay 1000000
-      stop (i+1) (nextGen board) newPaused
+      toStop (i+1) (nextGen board) newPaused
 
 runGOL :: IO ()
 runGOL = do
@@ -69,4 +69,4 @@ runGOL = do
   let gen0 = initBoard
   putStrLn "Generation 0:"
   display gen0
-  stop 1 (nextGen gen0) False
+  toStop 1 (nextGen gen0) False
