@@ -15,11 +15,11 @@ This project was inspired by the **array-based** implementation idea from a Yout
 
 ## Seeds in Haskell
 
-A minimal terminal simulator for the 2D **Seeds** cellular automaton.
+- A minimal terminal simulator for the 2D **Seeds** cellular automaton.
+- Seeds rule: every live cell dies; a dead cell with **exactly two** live neighbors (Moore neighborhood) becomes alive.
 
 ### Features
 - Ships with a **10×10** demo pattern (editable in code);
 - Unicode rendering in the terminal: **● = alive**, **○ = dead**;
 - Interactive REPL with `help`, `show`, `run N`, `save [file]`, `exit`;
-- Saves the current world as UTF-8 text with a `# generation: N` header;
-- Seeds rule: every live cell dies; a dead cell with **exactly two** live neighbors (Moore neighborhood) becomes alive;
+- Saves the current world as UTF-8 text with a `# generation: N` header.

@@ -4,11 +4,6 @@ import Control.Concurrent (threadDelay)
 import Automata.Seeds
 import System.IO (hFlush, stdout, withFile, IOMode(WriteMode), hSetEncoding, hPutStrLn, utf8)
 
--- =========================
--- Initial configuration
--- =========================
-
--- 10x10 initial pattern (each row 10 cells)
 initial :: World
 initial = fromStrings
   [ "○○○○○○○○○○"
@@ -23,38 +18,28 @@ initial = fromStrings
   , "○○○○○○○○○○"
   ]
 
--- fixed 10x10 box
 box :: (Int,Int,Int,Int)
 box = (0, 9, 0, 9)
-
 
 loop :: Int -> World -> IO World
 loop 0 w = pure w
 loop n w = do
   let w' = step w
-  drawBoxedIO box w'
+  drawBox box w'
   putStrLn ""
   threadDelay 120000
   loop (n-1) w'
 
--- =========================
--- IO helpers
--- =========================
-
 prompt :: String -> IO String
 prompt p = putStr p >> hFlush stdout >> getLine
 
--- Save with generation header on first line
 saveWorldWithGen :: FilePath -> Int -> (Int,Int,Int,Int) -> World -> IO ()
 saveWorldWithGen fp gen b w =
   withFile fp WriteMode $ \h -> do
     hSetEncoding h utf8
     hPutStrLn h ("# generation: " ++ show gen)
-    mapM_ (hPutStrLn h) (renderBoxed b w)
+    mapM_ (hPutStrLn h) (renderBox b w)
 
--- =========================
--- REPL
--- =========================
 
 helpText :: String
 helpText = unlines
@@ -80,7 +65,7 @@ repl world gen = do
   case ws of
     [] -> repl world gen
     ("help":_) -> putStrLn helpText >> repl world gen
-    ("show":_) -> drawBoxedIO box world >> repl world gen
+    ("show":_) -> drawBox box world >> repl world gen
     ("run":nstr:_) ->
       case reads nstr of
         [(n,"")] | n > 0 -> do
@@ -95,7 +80,3 @@ repl world gen = do
       repl world gen
     ("exit":_) -> putStrLn "Bye."
     _ -> putStrLn ("Unknown command: " ++ unwords ws ++ " (type help)") >> repl world gen
-
-
-
-
