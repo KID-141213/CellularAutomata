@@ -21,6 +21,7 @@ Seeds rule: every live cell dies; a dead cell with exactly two live neighbors (M
 - Displays the cellular automaton in the terminal using ASCII characters;
 - Provides a TUI with the following commands: `help`, `show`, `run N`, `save [file]`, `exit`;
 - Saves the current world as UTF-8 text with a `# generation: N` header.
+- The cellular automaton logic is in seed.hs, while the program entry point and features  are in Main.hs.
 
 ## Haddock
 Haddock documentation is generated at:
